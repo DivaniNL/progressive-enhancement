@@ -1,0 +1,294 @@
+<!doctype html>
+<html lang="nl">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width">
+		<title>Tabbladen / Progressive Enhancement / FDND</title>
+		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+		<link href="../assets/styles.css" rel="stylesheet">
+		<style>
+
+			ol, ul{
+				padding-left: 2rem;
+				margin: 0;
+			}
+
+			article {
+				display: block;
+				height: 0;
+				font-size: 0;
+				padding: 0;
+				border: 0;
+				z-index: 9;
+				position: relative;
+			}
+			article:first-of-type{
+				display: block;
+				height: auto;
+				font-size: 1rem;
+				border: 1px solid var(--blue);
+				padding: 20px 10px;
+				background-color: var(--green);
+			}
+			article:first-of-type > *{
+				opacity: 1;
+			}
+			article.inactive:first-of-type{
+				height: 0;
+				font-size: 0;
+				padding: 0;
+				border: 0;
+			}
+			article.inactive:first-of-type > *{
+				opacity: 0;
+			}
+			
+			article > *{
+				font-weight: 500;
+				opacity: 0;
+				transition: opacity 0.5s;
+			}
+			article > *:first-child{
+				margin-top: 0;
+			}
+			article > *:last-child{
+				margin-bottom: 0;
+			}
+			.anchor{
+				position: absolute;
+				top: 0;
+			}
+			.anchor:target + article{
+				display: block;
+				opacity: 1;
+				height: auto;
+				font-size: 1rem;
+				border: 1px solid var(--blue);
+				padding: 20px 10px;
+				background-color: var(--green);
+			}
+			.anchor:target + article > *{
+				opacity: 1;
+			}
+			nav ul{
+				display: flex;
+				list-style-type: none;
+				padding: 0;
+				margin: 0;
+				gap: 10px;
+
+			}	
+			nav ul li a{
+				text-decoration: none;
+				color: var(--blue);
+				font-weight: bold;
+				background-color: white;
+				display: block;
+				padding: 10px;
+				border: 1px solid transparent;
+				border-top-right-radius: 10px;
+				border-top-left-radius: 10px;
+				translate: 0 1px;
+				border-bottom: 1px solid transparent;
+			}
+			nav ul li a:hover{
+				text-decoration: underline;
+			}
+			nav ul li a.active, nav ul li a:focus{
+				border: 1px solid var(--blue);
+				text-decoration: underline;
+				border-color: var(--blue);
+				border-bottom: 1px solid var(--green);
+				background-color: var(--green);
+				z-index: 10;
+				position: relative;
+			}
+			/* Zet semester 2 ervoor met een counter die per sub-<ol> reset */
+			.gedragscriteria ol {
+            	counter-reset: item;
+			}
+			.gedragscriteria ol > li {
+				counter-increment: item;
+			}
+			.gedragscriteria ol > li > ol{
+				counter-reset: subitem;
+			}
+			.gedragscriteria ol > li > ol > li {
+				counter-increment: subitem;
+			}
+			.gedragscriteria ol > li::marker {
+				content: "2."counter(item)".";
+			}
+			.gedragscriteria ol > li > ol > li::marker {
+				content: "2."counter(item)"."counter(subitem)".";
+			}
+		</style>
+		
+	</head>
+	<body>
+		<h1>Tabbladen</h1>
+
+		<nav>
+			<ul>
+				<li><a class="active" href="#docenten">Docenten</a></li>
+				<li><a href="#sprints">Sprints</a></li>
+				<li><a href="#gedragscriteria">Gedragscriteria</a></li>
+				<li><a href="#open-avond">Open avond</a></li>
+			</ul>
+		</nav>
+
+
+		<a class="anchor" id="docenten"></a>
+		<article class="docenten">
+			<ol>
+				<li>Charley Muhren</li>
+				<li>Cyd Stumpel</li>
+				<li>Dion Pieters</li>
+				<li>Dorien Drees</li>
+				<li>Joost Faber</li>
+				<li>Justus Sturkenboom</li>
+				<li>Koop Reynders</li>
+				<li>Krijn Hoetmer</li>
+				<li>Sanne 't Hooft</li>
+				<li>Suus ten Voorde</li>
+			</ol>
+
+		</article>
+
+		<a class="anchor" id="sprints"></a>
+		<article class="sprints">
+			<ol>
+				<li>Your Tribe</li>
+				<li>The Client</li>
+				<li>All Human</li>
+				<li>Look and Feel</li>
+				<li>Fix the Flow</li>
+				<li>The Startup</li>
+				<li>Connect Your Tribe</li>
+				<li>Server-Side Rendering</li>
+				<li>The Web is for Everyone</li>
+				<li>User Experience</li>
+				<li>Pleasurabel UI</li>
+				<li>Proof of Concept</li>
+				<li>Your Tribe for Life</li>
+				<li>Lose Your Head</li>
+				<li>Choices, Choices</li>
+				<li>Don't Repeat Yourself</li>
+				<li>User Needs</li>
+				<li>Release Candidate</li>
+				<li>Free Space</li>
+				<li>Final Sprint</li>
+			</ol>
+
+		</article>
+
+		<a class="anchor" id="gedragscriteria"></a>
+		<article class="gedragscriteria">
+
+
+			<ol>
+				<li>Methodisch handelen
+					<ol>
+						<li>Kiest binnen projecten passende fases van de development-lifecycle.</li>
+						<li>Combineert aangeboden principes en standaarden op het gebied van frontend design en development om een oplossing voor een opdrachtgever te realiseren.</li>
+						<li>Houdt in beginnende mate rekening met belangen van eindgebruikers, valideert door middel van testen en verwerkt testresultaten.</li>
+					</ol>
+				</li>
+				<li>Samenwerken
+					<ol>
+						<li>Werkt in teams, vraagt begeleiding waar nodig en wijst teamleden op hun verantwoording.</li>
+						<li>Draagt verantwoording voor eigen resultaten, geeft feedback aan teamleden en verwerkt ontvangen feedback.</li>
+						<li>Identificeert diversiteit binnen teams en handelt respectvol naar anderen.</li>
+					</ol>
+				</li>
+				<li>Communiceren
+					<ol>
+						<li>Luistert en vraagt door, neemt wat een ander zegt serieus.</li>
+						<li>Kan ontwerpkeuzes, eigen ideeën en producten begrijpelijk overbrengen aan belanghebbenden.</li>
+						<li>Documenteert op professionele wijze en houdt voortgang bij.</li>
+					</ol>
+				</li>
+				<li>Probleemoplossend vermogen
+					<ol>
+						<li>Analyseert een vraag, signaleert knelpunten en volgt de aangeboden oplossingsrichting.</li>
+						<li>Schetst om gedachten en processen te verkennen en abstracte begrippen over te brengen.</li>
+						<li>Bedenkt en implementeert complexere frontend code en gebruikt daarbij API's en databases.</li>
+					</ol>
+				</li>
+				<li>Lerend vermogen
+					<ol>
+						<li>Volgt aangeboden internationale ontwikkelingen in het vakgebied.</li>
+						<li>Maakt aangeboden en zelf gevonden materie eigen en gebruikt dit bij leertaken, deelt ervaring binnen de squad.</li>
+						<li>Kent eigen capaciteiten en beperkingen, vergelijkt dit met het vermogen van anderen en maakt dit bespreekbaar.</li>
+					</ol>
+				</li>
+			</ol>
+
+		</article>
+
+		<a class="anchor" id="open-avond"></a>
+		<article class="open-avond">
+
+			<p>Open avond 15 april 2025</p>
+			<p>Op de open dag proef je de sfeer en ontdek je hoe het is om aan de HvA te studeren. Je maakt kennis met studenten en docenten van de opleiding.</p>
+			<p>Stel je vragen over studiekeuze, studeren met een functiebeperking en toelating op het studiekeuzeplein. Heb je nog vragen over de opleiding? We staan tijdens de open dag/avond klaar om al jouw vragen te beantwoorden.</p>
+
+		</article>
+
+		<details open>
+			<summary>Demo video</summary>
+			<video src="../assets/tabs.mp4" width="1298" height="505" controls muted autoplay loop>
+				<a href="../assets/tabs.mp4">assets/tabs.mp4</a>
+			</video>
+		</details>
+		<script type="module" defer>
+			document.addEventListener('DOMContentLoaded', () => {
+				let navitems = document.querySelectorAll('nav ul li a');
+				navitems.forEach((currentListItem) => {
+					currentListItem.addEventListener('click', function(event){
+						updateNavitems(currentListItem);
+						// Doe het na de hoofdstack. Zet de focus weer op het nav-element. Zodat je verder kunt tabben.
+						setTimeout(() => {
+							currentListItem.focus();
+						}, 0);
+					});
+	
+				});
+				function updateNavitems(currentListItem){
+					console.log(currentListItem.getAttribute('href') + " + article");
+	
+					let otherArticles = document.querySelectorAll('article');
+					otherArticles.forEach((article) => {
+						article.classList.remove('active');
+						article.classList.add('inactive');
+					});
+	
+					let activeArticle = document.querySelector(currentListItem.getAttribute('href') + " + article");
+					activeArticle.classList.add('active');
+					activeArticle.classList.remove('inactive');
+					
+	
+					navitems.forEach((navitem) => {
+						navitem.classList.remove('active');
+					});
+					currentListItem.classList.add('active');
+					console.log(currentListItem);
+	
+				}
+				// Doe het na de hoofdstack. Anders weet de code niet welke article anchor target is
+				setTimeout(() => {
+					let currentTab = document.querySelector(".anchor:target");
+					console.log(currentTab);
+					if (currentTab) {
+						let currentID = currentTab.getAttribute('id');
+						let currentNavItem = document.querySelector('nav ul li a[href="#'+ currentID +'"]')
+						console.log(currentNavItem);
+
+						//Update de active nav item doormiddel van de huidige target bij een refresh
+						updateNavitems(currentNavItem);
+					}
+				}, 0);
+			});
+			</script>
+	</body>
+</html>
