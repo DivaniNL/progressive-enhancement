@@ -13,27 +13,106 @@
 				margin: 0;
 			}
 
-			article {
-				display: none;
-				height: 0;
-				font-size: 0;
-				padding: 0;
-				border: 0;
-				z-index: 9;
-				position: relative;
+			article {				
+				display: block;
+				opacity: 1;
+				height: auto;
+				font-size: 1rem;
+				border: 1px solid var(--blue);
+				padding: 20px 10px;
 			}
-			article:first-of-type{
+			#docenten + article{
+				display: block;
+				opacity: 1;
+				height: auto;
+				font-size: 1rem;
+				border: 1px solid var(--blue);
+				padding: 20px 10px;
+			}	
+			@supports selector(:not(a)) {
+				/* #docenten + article{
+					display: block;
+					opacity: 1;
+					height: auto;
+					font-size: 1rem;
+					border: 1px solid var(--blue);
+					padding: 20px 10px;
+				}	
+				#docenten + article > *{
+					opacity: 1;
+				} */
+				.anchor:not(:target) + article{
+					display: none;
+					height: 0;
+					font-size: 0;
+					padding: 0;
+					border: 0;
+				}
+				.anchor#docenten:not(:target) + article{
+					display: none;
+					height: 0;
+					font-size: 0;
+					padding: 0;
+					border: 0;
+				}
+				.anchor#docenten:not(:target) + article > *{
+					opacity: 0;
+				}
+				.anchor:not(:target) + article > *{
+					opacity: 0;
+				} 
+
+				article, #docenten + article{
+					display: none;
+					height: 0;
+					font-size: 0;
+					padding: 0;
+					border: 0;
+				}
+				.anchor:target + article, .anchor#docenten:target + article{
+					display: block;
+					opacity: 1;
+					height: auto;
+					font-size: 1rem;
+					border: 1px solid var(--blue);
+					padding: 20px 10px;
+					background-color: var(--green);
+				}		
+				.anchor{
+					position: absolute;
+					top: 0;
+				}
+				@supports selector(:has(a)){
+					body:not(:has(.anchor:target)){
+						#docenten + article{
+							display: block;
+							opacity: 1;
+							height: auto;
+							font-size: 1rem;
+							border: 1px solid var(--blue);
+							padding: 20px 10px;
+							background-color: var(--green);
+						}
+						#docenten + article > *{
+							opacity: 1;
+						}
+					}
+				}
+			}
+			
+			/* article:first-of-type{
 				display: none;
 				height: auto;
 				font-size: 1rem;
 				border: 1px solid var(--blue);
 				padding: 20px 10px;
-				background-color: var(--green);
+
 			}
+
 			article:first-of-type > *{
 				opacity: 1;
-			}
-			article.inactive:first-of-type{
+			} */
+			/* article.inactive:first-of-type{
 				height: 0;
 				font-size: 0;
 				padding: 0;
@@ -41,11 +120,11 @@
 			}
 			article.inactive:first-of-type > *{
 				opacity: 0;
-			}
+			} */
 			
 			article > *{
 				font-weight: 500;
-				opacity: 0;
+				opacity: 1;
 				transition: opacity 0.5s;
 			}
 			article > *:first-child{
@@ -54,10 +133,7 @@
 			article > *:last-child{
 				margin-bottom: 0;
 			}
-			.anchor{
-				position: absolute;
-				top: 0;
-			}
+
 			.anchor:target + article{
 				display: block;
 				opacity: 1;
@@ -89,7 +165,7 @@
 				border-top-right-radius: 10px;
 				border-top-left-radius: 10px;
 				translate: 0 1px;
-				border-bottom: 1px solid transparent;
+				border-bottom: 1px solid var(--blue);
 			}
 			nav ul li a:hover{
 				text-decoration: underline;
