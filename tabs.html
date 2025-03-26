@@ -5,42 +5,192 @@
 		<meta name="viewport" content="width=device-width">
 		<title>Tabbladen / Progressive Enhancement / FDND</title>
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
-		<link href="assets/styles.css" rel="stylesheet">
+		<link href="../assets/styles.css" rel="stylesheet">
 		<style>
-			article {
-				display: none;
-				padding: 20px 10px;
+
+			ol, ul{
+				padding-left: 2rem;
+				margin: 0;
+			}
+
+			article {				
+				display: block;
+				opacity: 1;
+				height: auto;
+				font-size: 1rem;
 				border: 1px solid var(--blue);
+				padding: 20px 10px;
 			}
-			article > *{
-				font-weight: 500
+			#docenten + article{
+				display: block;
+				opacity: 1;
+				height: auto;
+				font-size: 1rem;
+				border: 1px solid var(--blue);
+				padding: 20px 10px;
+			}	
+			@supports selector(:not(a)) {
+				/* #docenten + article{
+					display: block;
+					opacity: 1;
+					height: auto;
+					font-size: 1rem;
+					border: 1px solid var(--blue);
+					padding: 20px 10px;
+				}	
+				#docenten + article > *{
+					opacity: 1;
+				} */
+				.anchor + article{
+					display: none;
+					height: 0;
+					font-size: 0;
+					padding: 0;
+					border: 0;
+				}
+				.anchor#docenten:not(:target) + article{
+					display: none;
+					height: 0;
+					font-size: 0;
+					padding: 0;
+					border: 0;
+				}
+				.anchor#docenten:not(:target) + article > *{
+					opacity: 0;
+				}
+				.anchor + article > *{
+					opacity: 0;
+				} 
+				.anchor:target + article > *{
+					opacity: 1;
+				}
+
+				article, #docenten + article{
+					display: none;
+					height: 0;
+					font-size: 0;
+					padding: 0;
+					border: 0;
+				}
+				.anchor:target + article, .anchor#docenten:target + article{
+					display: block;
+					opacity: 1;
+					height: auto;
+					font-size: 1rem;
+					border: 1px solid var(--blue);
+					padding: 20px 10px;
+					background-color: var(--green);
+				}		
+				.anchor{
+					position: absolute;
+					top: 0;
+				}
+				@supports selector(:has(a)){
+					body:not(:has(.anchor:target)){
+						#docenten + article{
+							display: block;
+							opacity: 1;
+							height: auto;
+							font-size: 1rem;
+							border: 1px solid var(--blue);
+							padding: 20px 10px;
+							background-color: var(--green);
+						}
+						#docenten + article > *{
+							opacity: 1;
+						}
+					}
+				}
 			}
-			/* .anchor{
-				position: absolute;
-				top: 0;
+			
+			/* article:first-of-type{
+				display: none;
+				height: auto;
+				font-size: 1rem;
+				border: 1px solid var(--blue);
+				padding: 20px 10px;
+
+			}
+
+			article:first-of-type > *{
+				opacity: 1;
 			} */
+			/* article.inactive:first-of-type{
+				height: 0;
+				font-size: 0;
+				padding: 0;
+				border: 0;
+			}
+			article.inactive:first-of-type > *{
+				opacity: 0;
+			} */
+			
+			article > *{
+				font-weight: 500;
+				opacity: 1;
+				transition: opacity 0.5s;
+			}
+			article > *:first-child{
+				margin-top: 0;
+			}
+			article > *:last-child{
+				margin-bottom: 0;
+			}
+
 			.anchor:target + article{
 				display: block;
+				opacity: 1;
+				height: auto;
+				font-size: 1rem;
+				border: 1px solid var(--blue);
+				padding: 20px 10px;
+				background-color: var(--green);
+			}
+			.anchor:target + article > *{
+				opacity: 1;
 			}
 			nav ul{
 				display: flex;
 				list-style-type: none;
 				padding: 0;
 				margin: 0;
+				gap: 10px;
+				flex-direction: column;
 			}	
-			nav ul li{
-				padding: 10px;
-			}
 			nav ul li a{
 				text-decoration: none;
 				color: var(--blue);
 				font-weight: bold;
+				background-color: white;
+				display: block;
+				padding: 10px;
+				height: 100% !important;
+				border: 1px solid transparent;
+				border-top-right-radius: 10px;
+				border-top-left-radius: 10px;
 			}
 			nav ul li a:hover{
 				text-decoration: underline;
 			}
-
-
+			@media (min-width: 600px){
+				nav ul{
+					flex-direction: row;
+				}
+				nav ul li a{
+					border-bottom: 1px solid var(--blue);
+					translate: 0 1px;
+				}
+				nav ul li a.active, nav ul li a:focus{
+				border: 1px solid var(--blue);
+				text-decoration: underline;
+				border-color: var(--blue);
+				border-bottom: 1px solid var(--green);
+				background-color: var(--green);
+				z-index: 10;
+				position: relative;
+			}
+			}
+			
 			/* Zet semester 2 ervoor met een counter die per sub-<ol> reset */
 			.gedragscriteria ol {
             	counter-reset: item;
@@ -60,16 +210,40 @@
 			.gedragscriteria ol > li > ol > li::marker {
 				content: "2."counter(item)"."counter(subitem)".";
 			}
+
+
+
+
+			body.enhanced{
+				article.active{
+					display: block;
+					opacity: 1;
+					height: auto;
+					font-size: 1rem;
+					border: 1px solid var(--blue);
+					padding: 20px 10px;
+					background-color: var(--green);
+				}	
+				article.active > *{
+					opacity: 1;
+				}
+				#docenten + article.inactive{
+					display: none;
+					height: 0;
+					font-size: 0;
+					padding: 0;
+					border: 0;
+				}
+			}
 		</style>
-		<script type="module">
-		</script>
+		
 	</head>
 	<body>
 		<h1>Tabbladen</h1>
 
 		<nav>
 			<ul>
-				<li><a href="#docenten">Docenten</a></li>
+				<li><a class="active" href="#docenten">Docenten</a></li>
 				<li><a href="#sprints">Sprints</a></li>
 				<li><a href="#gedragscriteria">Gedragscriteria</a></li>
 				<li><a href="#open-avond">Open avond</a></li>
@@ -176,9 +350,60 @@
 
 		<details open>
 			<summary>Demo video</summary>
-			<video src="assets/tabs.mp4" width="1298" height="505" controls muted autoplay loop>
-				<a href="assets/tabs.mp4">assets/tabs.mp4</a>
+			<video src="../assets/tabs.mp4" width="1298" height="505" controls muted autoplay loop>
+				<a href="../assets/tabs.mp4">assets/tabs.mp4</a>
 			</video>
 		</details>
+		<script type="module" defer>
+			document.addEventListener('DOMContentLoaded', () => {
+				document.body.classList.add('enhanced');
+				let navitems = document.querySelectorAll('nav ul li a');
+				navitems.forEach((currentListItem) => {
+					currentListItem.addEventListener('click', function(event){
+						updateNavitems(currentListItem);
+						event.preventDefault();
+						// Doe het na de hoofdstack. Zet de focus weer op het nav-element. Zodat je verder kunt tabben.
+						setTimeout(() => {
+							currentListItem.focus();
+						}, 0);
+					});
+	
+				});
+				function updateNavitems(currentListItem){
+					console.log(currentListItem.getAttribute('href') + " + article");
+	
+					let otherArticles = document.querySelectorAll('article');
+					otherArticles.forEach((article) => {
+						article.classList.remove('active');
+						article.classList.add('inactive');
+					});
+	
+					let activeArticle = document.querySelector(currentListItem.getAttribute('href') + " + article");
+					activeArticle.classList.add('active');
+					activeArticle.classList.remove('inactive');
+					
+	
+					navitems.forEach((navitem) => {
+						navitem.classList.remove('active');
+					});
+					currentListItem.classList.add('active');
+					console.log(currentListItem);
+	
+				}
+				// Doe het na de hoofdstack. Anders weet de code niet welke article anchor target is
+				setTimeout(() => {
+					let currentTab = document.querySelector(".anchor:target");
+					console.log(currentTab);
+					if (currentTab) {
+						let currentID = currentTab.getAttribute('id');
+						let currentNavItem = document.querySelector('nav ul li a[href="#'+ currentID +'"]')
+						console.log(currentNavItem);
+
+						//Update de active nav item doormiddel van de huidige target bij een refresh
+						updateNavitems(currentNavItem);
+					}
+				}, 0);
+			});
+			</script>
 	</body>
 </html>
