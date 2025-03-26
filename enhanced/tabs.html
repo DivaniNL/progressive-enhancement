@@ -152,7 +152,7 @@
 				padding: 0;
 				margin: 0;
 				gap: 10px;
-
+				flex-direction: column;
 			}	
 			nav ul li a{
 				text-decoration: none;
@@ -161,16 +161,23 @@
 				background-color: white;
 				display: block;
 				padding: 10px;
+				height: 100% !important;
 				border: 1px solid transparent;
 				border-top-right-radius: 10px;
 				border-top-left-radius: 10px;
-				translate: 0 1px;
-				border-bottom: 1px solid var(--blue);
 			}
 			nav ul li a:hover{
 				text-decoration: underline;
 			}
-			nav ul li a.active, nav ul li a:focus{
+			@media (min-width: 600px){
+				nav ul{
+					flex-direction: row;
+				}
+				nav ul li a{
+					border-bottom: 1px solid var(--blue);
+					translate: 0 1px;
+				}
+				nav ul li a.active, nav ul li a:focus{
 				border: 1px solid var(--blue);
 				text-decoration: underline;
 				border-color: var(--blue);
@@ -179,6 +186,8 @@
 				z-index: 10;
 				position: relative;
 			}
+			}
+			
 			/* Zet semester 2 ervoor met een counter die per sub-<ol> reset */
 			.gedragscriteria ol {
             	counter-reset: item;
