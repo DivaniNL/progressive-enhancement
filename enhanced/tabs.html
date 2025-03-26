@@ -41,7 +41,7 @@
 				#docenten + article > *{
 					opacity: 1;
 				} */
-				.anchor:not(:target) + article{
+				.anchor + article{
 					display: none;
 					height: 0;
 					font-size: 0;
@@ -58,9 +58,12 @@
 				.anchor#docenten:not(:target) + article > *{
 					opacity: 0;
 				}
-				.anchor:not(:target) + article > *{
+				.anchor + article > *{
 					opacity: 0;
 				} 
+				.anchor:target + article > *{
+					opacity: 1;
+				}
 
 				article, #docenten + article{
 					display: none;
@@ -207,6 +210,31 @@
 			.gedragscriteria ol > li > ol > li::marker {
 				content: "2."counter(item)"."counter(subitem)".";
 			}
+
+
+
+
+			body.enhanced{
+				article.active{
+					display: block;
+					opacity: 1;
+					height: auto;
+					font-size: 1rem;
+					border: 1px solid var(--blue);
+					padding: 20px 10px;
+					background-color: var(--green);
+				}	
+				article.active > *{
+					opacity: 1;
+				}
+				#docenten + article.inactive{
+					display: none;
+					height: 0;
+					font-size: 0;
+					padding: 0;
+					border: 0;
+				}
+			}
 		</style>
 		
 	</head>
@@ -328,10 +356,12 @@
 		</details>
 		<script type="module" defer>
 			document.addEventListener('DOMContentLoaded', () => {
+				document.body.classList.add('enhanced');
 				let navitems = document.querySelectorAll('nav ul li a');
 				navitems.forEach((currentListItem) => {
 					currentListItem.addEventListener('click', function(event){
 						updateNavitems(currentListItem);
+						event.preventDefault();
 						// Doe het na de hoofdstack. Zet de focus weer op het nav-element. Zodat je verder kunt tabben.
 						setTimeout(() => {
 							currentListItem.focus();
