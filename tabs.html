@@ -215,6 +215,7 @@
 
 
 			body.enhanced{
+				background-color: red;
 				article.active{
 					display: block;
 					opacity: 1;
@@ -244,6 +245,15 @@
 					padding: 0;
 					border: 0;
 				}
+			}
+			body.enhanced article.active{
+				display: block;
+				opacity: 1;
+				height: auto;
+				font-size: 1rem;
+				border: 1px solid var(--blue);
+				padding: 20px 10px;
+				background-color: var(--green);
 			}
 		</style>
 		
@@ -366,7 +376,6 @@
 		</details>
 		<script type="module" defer>
 			document.addEventListener('DOMContentLoaded', () => {
-
 				let navitems = document.querySelectorAll('nav ul li a');
 				navitems.forEach((currentListItem) => {
 					currentListItem.addEventListener('click', function(event){
