@@ -210,41 +210,8 @@
 			.gedragscriteria ol > li > ol > li::marker {
 				content: "2."counter(item)"."counter(subitem)".";
 			}
-
-
-
-
 			body.enhanced{
-				background-color: red;
-				article.active{
-					display: block;
-					opacity: 1;
-					height: auto;
-					font-size: 1rem;
-					border: 1px solid var(--blue);
-					padding: 20px 10px;
-					background-color: var(--green);
-				}	
-				#docenten + article.active{
-					display: block;
-					opacity: 1;
-					height: auto;
-					font-size: 1rem;
-					border: 1px solid var(--blue);
-					padding: 20px 10px;
-					background-color: var(--green);
-				}	
-				article.active > *{
-					opacity: 1;
-				} 
-				
-				#docenten + article.inactive{
-					display: none;
-					height: 0;
-					font-size: 0;
-					padding: 0;
-					border: 0;
-				}
+				background-color: rebeccapurple;
 			}
 			body.enhanced article.active{
 				display: block;
@@ -254,6 +221,25 @@
 				border: 1px solid var(--blue);
 				padding: 20px 10px;
 				background-color: var(--green);
+			}
+			body.enhanced #docenten + article.active{
+				display: block;
+				opacity: 1;
+				height: auto;
+				font-size: 1rem;
+				border: 1px solid var(--blue);
+				padding: 20px 10px;
+				background-color: var(--green);
+			}
+			body.enhanced article.active > *{
+				opacity: 1;
+			}
+			body.enhanced #docenten + article.inactive{
+				display: none;
+				height: 0;
+				font-size: 0;
+				padding: 0;
+				border: 0;
 			}
 		</style>
 		
