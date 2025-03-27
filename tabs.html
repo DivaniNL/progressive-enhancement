@@ -144,6 +144,18 @@
 			nav ul li a:hover{
 				text-decoration: underline;
 			}
+			nav ul li a.active, nav ul li a:focus{
+				border: 1px solid var(--blue);
+				text-decoration: underline;
+				border-color: var(--blue);
+				background-color: var(--green);
+				z-index: 10;
+				position: relative;
+			}
+			nav ul li:first-of-type a{
+				border-top-right-radius: 10px;
+				border-top-left-radius: 10px;
+			}
 			@media (min-width: 600px){
 				nav ul{
 					flex-direction: row;
@@ -155,15 +167,10 @@
 					border-top-right-radius: 10px;
 					border-top-left-radius: 10px;
 				}
+					
 				nav ul li a.active, nav ul li a:focus{
-				border: 1px solid var(--blue);
-				text-decoration: underline;
-				border-color: var(--blue);
-				border-bottom: 1px solid var(--green);
-				background-color: var(--green);
-				z-index: 10;
-				position: relative;
-			}
+					border-bottom: 1px solid var(--green);
+				}
 			}
 			
 			/* Zet semester 2 ervoor met een counter die per sub-<ol> reset */
