@@ -30,17 +30,6 @@
 				padding: 20px 10px;
 			}	
 			@supports selector(:not(a)) {
-				/* #docenten + article{
-					display: block;
-					opacity: 1;
-					height: auto;
-					font-size: 1rem;
-					border: 1px solid var(--blue);
-					padding: 20px 10px;
-				}	
-				#docenten + article > *{
-					opacity: 1;
-				} */
 				.anchor + article{
 					display: none;
 					height: 0;
@@ -85,46 +74,25 @@
 					position: absolute;
 					top: 0;
 				}
-				@supports selector(:has(a)){
-					body:not(:has(.anchor:target)){
-						#docenten + article{
-							display: block;
-							opacity: 1;
-							height: auto;
-							font-size: 1rem;
-							border: 1px solid var(--blue);
-							padding: 20px 10px;
-							background-color: var(--green);
-						}
-						#docenten + article > *{
-							opacity: 1;
-						}
+				
+			}
+			@supports selector(:has(a)){
+				/* Initial screen */
+				body:not(:has(.anchor:target)){
+					#docenten + article{
+						display: block;
+						opacity: 1;
+						height: auto;
+						font-size: 1rem;
+						border: 1px solid var(--blue);
+						padding: 20px 10px;
+						background-color: var(--green);
+					}
+					#docenten + article > *{
+						opacity: 1;
 					}
 				}
 			}
-			
-			/* article:first-of-type{
-				display: none;
-				height: auto;
-				font-size: 1rem;
-				border: 1px solid var(--blue);
-				padding: 20px 10px;
-
-			}
-
-			article:first-of-type > *{
-				opacity: 1;
-			} */
-			/* article.inactive:first-of-type{
-				height: 0;
-				font-size: 0;
-				padding: 0;
-				border: 0;
-			}
-			article.inactive:first-of-type > *{
-				opacity: 0;
-			} */
-			
 			article > *{
 				font-weight: 500;
 				opacity: 1;
@@ -154,7 +122,6 @@
 				list-style-type: none;
 				padding: 0;
 				margin: 0;
-				gap: 10px;
 				flex-direction: column;
 			}	
 			nav ul li a{
@@ -166,8 +133,7 @@
 				padding: 10px;
 				height: 100% !important;
 				border: 1px solid transparent;
-				border-top-right-radius: 10px;
-				border-top-left-radius: 10px;
+
 			}
 			nav ul li a:hover{
 				text-decoration: underline;
@@ -175,10 +141,13 @@
 			@media (min-width: 600px){
 				nav ul{
 					flex-direction: row;
+					gap: 10px;
 				}
 				nav ul li a{
 					border-bottom: 1px solid var(--blue);
 					translate: 0 1px;
+					border-top-right-radius: 10px;
+					border-top-left-radius: 10px;
 				}
 				nav ul li a.active, nav ul li a:focus{
 				border: 1px solid var(--blue);
