@@ -7,12 +7,16 @@
 		<link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
 		<link href="assets/styles.css" rel="stylesheet">
 		<style>
+			:root {
+				interpolate-size: allow-keywords;
+			}
 			details{
 				border-radius: 14px;
 				border: 1px solid #050542;
 				margin-bottom: 20px;
 				color: #050542;
 				width: fit-content;
+				overflow: hidden;
 			}
 			details:last-child{
 				margin-bottom: 0;
@@ -30,31 +34,32 @@
 				border-bottom-left-radius: 0;
 				border-bottom-right-radius: 0;
 			}
-			details[open] p{
+			details::details-content{
+				height: 0;
+				border-radius: 14px;
+				border-top-left-radius: 0;
+				transition: height 1s;
+			}
+			details[open]::details-content{
+				height: fit-content;
 				padding: 20px;
-				border-radius: 0;
+			}
+			details *{
 				margin: 0;
-			}
-			details[open] p:first-of-type{
-				border-top-right-radius: 14px;
-			}
-			details[open] p:last-of-type{
-				border-bottom-left-radius: 14px;
-				border-bottom-right-radius: 14px;
 			}
 
 			/* Details 1 */
-			details:nth-of-type(1)[open] summary, details:nth-of-type(1)[open] p{
+			details:nth-of-type(1)[open] summary, details:nth-of-type(1)[open]::details-content{
 				background-color: #A675F5;
 			}
 
 			/* Details 2 */
-			details:nth-of-type(2)[open] summary, details:nth-of-type(2)[open] p{
+			details:nth-of-type(2)[open] summary, details:nth-of-type(2)[open]::details-content{
 				background-color: #66E5BF;
 			}
 
 			/* Details 3 */
-			details:nth-of-type(3)[open] summary, details:nth-of-type(3)[open] p{
+			details:nth-of-type(3)[open] summary, details:nth-of-type(3)[open]::details-content{
 				background-color: #FFFC86;
 			}
 
