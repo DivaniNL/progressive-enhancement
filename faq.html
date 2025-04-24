@@ -11,8 +11,7 @@
 				interpolate-size: allow-keywords;
 			}
 			details{
-				border-radius: 14px;
-				border: 1px solid #050542;
+
 				margin-bottom: 20px;
 				color: #050542;
 				width: fit-content;
@@ -25,7 +24,9 @@
 				padding: 20px;
 				border-radius: 14px;
 				width: fit-content;
+				max-width: fit-content;
 				cursor: pointer;
+				border: 1px solid #050542;
 			}
 			details[open]{
 				border: none;
@@ -33,12 +34,14 @@
 			details[open] summary{
 				border-bottom-left-radius: 0;
 				border-bottom-right-radius: 0;
+				border-color: transparent;
 			}
 			details::details-content{
 				height: 0;
 				border-radius: 14px;
 				border-top-left-radius: 0;
-				transition: height 1s;
+				transition: 1s ease;
+				transition-behavior: allow-discrete;
 			}
 			details[open]::details-content{
 				height: fit-content;
